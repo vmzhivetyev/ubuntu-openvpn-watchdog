@@ -35,6 +35,8 @@ if [ -f $INSTALL_PATH/$SERVICE_NAME.service ]; then
 fi
 ln -s $SERVICE_FILE $INSTALL_PATH/$SERVICE_NAME.service
 
+systemctl enable $SERVICE_NAME
+
 
 # Verify and install timer
 systemd-analyze verify $TIMER_FILE
@@ -46,8 +48,8 @@ ln -s $TIMER_FILE $INSTALL_PATH/$SERVICE_NAME.timer
 
 
 # Start service timer
-# systemctl enable $SERVICE_NAME
 systemctl enable $SERVICE_NAME.timer
+systemctl disable $SERVICE_NAME
 
 echo "Run: systemctl start $SERVICE_NAME"
 echo "Run: ./watch_log.sh"
