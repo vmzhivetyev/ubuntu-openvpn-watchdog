@@ -36,7 +36,7 @@ if [ -f $INSTALL_PATH/$SERVICE_NAME ]; then
 	rm $INSTALL_PATH/$SERVICE_NAME
 fi
 ln -s $SERVICE_FILE $INSTALL_PATH/$SERVICE_NAME
-systemd-analyze verify $SERVICE_NAME
+# systemd-analyze verify $SERVICE_NAME
 
 
 # Install timer
@@ -44,7 +44,7 @@ if [ -f $INSTALL_PATH/$TIMER_NAME ]; then
 	rm $INSTALL_PATH/$TIMER_NAME
 fi
 ln -s $TIMER_FILE $INSTALL_PATH/$TIMER_NAME
-systemd-analyze verify $TIMER_NAME
+# systemd-analyze verify $TIMER_NAME
 
 
 # Start service timer
