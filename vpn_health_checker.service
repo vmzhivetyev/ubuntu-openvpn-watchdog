@@ -9,7 +9,7 @@ Wants=vpn_health_checker.timer
 
 [Service]
 Type=oneshot
-ExecStart=/home/user/ubuntu-openvpn-watchdog/check_openvpn_health.sh >> /home/user/ubuntu-openvpn-watchdog/log.log
+ExecStart=cd /home/user/ubuntu-openvpn-watchdog && ./check_openvpn_health.sh >> log.log
 
 [Install]
 WantedBy=multi-user.target
