@@ -25,37 +25,34 @@ fi
 
 
 # Stop service if running
-systemctl stop $SERVICE_NAME || true
-systemctl disable $SERVICE_NAME || true
 systemctl stop $TIMER_NAME || true
 systemctl disable $TIMER_NAME || true
+systemctl stop $SERVICE_NAME || true
+systemctl disable $SERVICE_NAME || true
 
 
-# Verify and install service
-systemd-analyze verify $SERVICE_FILE
-
+# Install service
 if [ -f $INSTALL_PATH/$SERVICE_NAME ]; then
 	rm $INSTALL_PATH/$SERVICE_NAME
 fi
 ln -s $SERVICE_FILE $INSTALL_PATH/$SERVICE_NAME
+systemd-analyze verify $SERVICE_NAME
 
-# systemctl enable $SERVICE_NAME
 
-
-# Verify and install timer
-systemd-analyze verify $TIMER_FILE
-
+# Install timer
 if [ -f $INSTALL_PATH/$TIMER_NAME ]; then
 	rm $INSTALL_PATH/$TIMER_NAME
 fi
 ln -s $TIMER_FILE $INSTALL_PATH/$TIMER_NAME
+systemd-analyze verify $TIMER_NAME
 
 
 # Start service timer
 systemctl enable $TIMER_NAME
-# systemctl disable $SERVICE_NAME
+systemctl start $TIMER_NAME
 
-echo "Run: systemctl start $SERVICE_NAME"
-echo "Run: ./watch_log.sh"
+
+echo "Manual one-time run: systemctl start $SERVICE_NAME"
+echo "Watch logs: ./watch_log.sh"
 
 
