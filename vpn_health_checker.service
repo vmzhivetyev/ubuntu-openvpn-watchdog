@@ -1,0 +1,16 @@
+# Based on hive.service
+# See: https://medium.com/@benmorel/creating-a-linux-service-with-systemd-611b5c8b91d6
+
+[Unit]
+Description=Check internet connection health and restart openvpn@client service if needed.
+After=network-online.target multi-user.target
+Requires=network-online.target
+Wants=vpn_health_checker.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/user/ubuntu-openvpn-watchdog/check_openvpn_health.sh >> /home/user/ubuntu-openvpn-watchdog/log.log
+
+[Install]
+WantedBy=multi-user.target
+
