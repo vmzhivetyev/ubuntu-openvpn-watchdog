@@ -19,26 +19,31 @@ if [ ! -f $TIMER_FILE ]; then
 	exit 1
 fi
 
+
 # Stop service if running
 systemctl stop $SERVICE_NAME || true
 systemctl disable $SERVICE_NAME || true
 systemctl stop $SERVICE_NAME.timer || true
 systemctl disable $SERVICE_NAME.timer || true
 
-# Verify service file
-systemd-analyze verify $SERVICE_FILE
-systemd-analyze verify $TIMER_FILE
 
-# Install service files
+# Verify and install service
+systemd-analyze verify $SERVICE_FILE
+
 if [ -f $INSTALL_PATH/$SERVICE_NAME.service ]; then
 	rm $INSTALL_PATH/$SERVICE_NAME.service
 fi
 ln -s $SERVICE_FILE $INSTALL_PATH/$SERVICE_NAME.service
 
+
+# Verify and install timer
+systemd-analyze verify $TIMER_FILE
+
 if [ -f $INSTALL_PATH/$SERVICE_NAME.timer ]; then
 	rm $INSTALL_PATH/$SERVICE_NAME.timer
 fi
 ln -s $TIMER_FILE $INSTALL_PATH/$SERVICE_NAME.timer
+
 
 # Start service timer
 # systemctl enable $SERVICE_NAME
