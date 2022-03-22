@@ -2,6 +2,8 @@
 
 set -euo pipefail
 
+cd /home/user/ubuntu-openvpn-watchdog
+
 echo "Checking route to google.com..."
 if ! nc -z -w 1 www.google.com 80 > /dev/null 2>&1 ; then
 	echo "🔥 No route to google.com 🔥"
