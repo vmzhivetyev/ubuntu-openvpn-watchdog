@@ -1,0 +1,11 @@
+[Unit]
+Description=Check internet health periodically
+Requires=check_openvpn_health.service
+
+[Timer]
+Unit=check_openvpn_health.service
+# every minute
+OnCalendar=*-*-* *:*:00
+
+[Install]
+WantedBy=timers.target
