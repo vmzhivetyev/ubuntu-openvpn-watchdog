@@ -8,7 +8,7 @@ BASE_NAME=vpn_health_checker
 SERVICE_NAME=$BASE_NAME.service
 TIMER_NAME=$BASE_NAME.timer
 
-INSTALL_PATH=/lib/systemd/system
+INSTALL_PATH=/etc/systemd/system
 
 SERVICE_FILE=$(pwd)/$SERVICE_NAME
 TIMER_FILE=$(pwd)/$TIMER_NAME
