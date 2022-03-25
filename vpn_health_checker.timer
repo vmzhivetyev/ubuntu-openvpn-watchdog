@@ -4,8 +4,8 @@ Requires=vpn_health_checker.service
 
 [Timer]
 Unit=vpn_health_checker.service
-# every minute
-OnCalendar=*-*-* *:*:00
+# every 15 minutes
+OnCalendar=*:0/15
 
 [Install]
 WantedBy=timers.target
