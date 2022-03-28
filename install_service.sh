@@ -47,12 +47,11 @@ fi
 ln -s $TIMER_FILE $INSTALL_PATH/$TIMER_NAME
 
 
-# Start service timer
+# Start timer
 systemctl enable $TIMER_NAME
 systemctl start $TIMER_NAME
 
-
-echo "Manual one-time run: systemctl start $SERVICE_NAME"
-echo "Watch logs: ./watch_log.sh"
+echo "Manual one-time run: \n" "$ systemctl start $SERVICE_NAME"
+echo "Watch logs: \n" "$ ./watch_log.sh"
 
 
