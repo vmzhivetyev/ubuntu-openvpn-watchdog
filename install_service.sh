@@ -51,7 +51,10 @@ ln -s $TIMER_FILE $INSTALL_PATH/$TIMER_NAME
 systemctl enable $TIMER_NAME
 systemctl start $TIMER_NAME
 
-echo "Manual one-time run: \n" "$ systemctl start $SERVICE_NAME"
-echo "Watch logs: \n" "$ ./watch_log.sh"
+set +x
+echo 
+echo "Installed ✅"
+echo -e "Manual one-time run: \n" "$ systemctl start $SERVICE_NAME"
+echo -e "Watch logs: \n" "$ ./watch_log.sh"
 
 
