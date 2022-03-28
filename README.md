@@ -24,3 +24,8 @@ $ git clone https://github.com/vmzhivetyev/ubuntu-openvpn-watchdog
 $ cd ubuntu-openvpn-watchdog
 $ ./install_service.sh
 ```
+
+Also you probably want to change conditional check for correct IP in `check_openvpn_health.sh`
+```
+grep -qiF Germany
+```
