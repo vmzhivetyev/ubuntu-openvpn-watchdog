@@ -1,4 +1,9 @@
-# ubuntu-openvpn-watchdog
+# Why
+
+When you are using openvpn on linux sometimes it gets stuck and your machine goes offline forever.
+
+# What is it
+
 HiveOS helper to restart openvpn if needed.
 
 I decided to check my IP country using https://api.myip.com.
