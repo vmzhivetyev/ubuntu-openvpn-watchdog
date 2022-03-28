@@ -1,1 +1,1 @@
-journalctl -S today -f -u vpn_health_checker.service | less
+journalctl -S today -f -u vpn_health_checker.service
