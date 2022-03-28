@@ -15,3 +15,12 @@ If request fails or response doesn't contain `Germany` (as I'm using a VPN serve
 Some things are hardcoded assuming that main script is located at `/home/user/ubuntu-openvpn-watchdog/check_openvpn_health.sh`.
 
 So if you want to use it, you'll need to fork this repo and change paths in scripts (use find and replace in all files).
+
+Or you can just do
+```bash
+$ mkdir -p /home/user
+$ cd /home/user
+$ git clone https://github.com/vmzhivetyev/ubuntu-openvpn-watchdog
+$ cd ubuntu-openvpn-watchdog
+$ ./install_service.sh
+```
