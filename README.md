@@ -10,6 +10,8 @@ I decided to check my IP country using https://api.myip.com.
 
 If request fails or response doesn't contain `Germany` (as I'm using a VPN server in Germany) then watchdog restarts `openvpn@client` service.
 
+`vpn_health_checker.timer` is set to run a check every 15 minutes.
+
 # Usage
 
 Some things are hardcoded assuming that main script is located at `/home/user/ubuntu-openvpn-watchdog/check_openvpn_health.sh`.
