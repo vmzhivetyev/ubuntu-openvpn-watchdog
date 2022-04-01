@@ -5,11 +5,6 @@ set -euo pipefail
 MAX_ATTEMPTS=3
 RECHECK_DELAY=20 # seconds before first recheck in a row
 
-function restart_openvpn() {
-	echo "Restarting openvpn@client..."
-	service openvpn@client restart
-}
-
 ATTEMPT=1
 
 while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
@@ -18,9 +13,15 @@ while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
 		echo "✅ All good! ✅"
 		exit 0
 	else
-		echo "🔥 Bad IP! $IP 🔥"
 		echo "Restart attempt $ATTEMPT/$MAX_ATTEMPTS..."
-		restart_openvpn
+
+		if echo $IP | grep -qiF "<!DOCTYPE html>" ; then
+			echo "ℹ️ Looks like myip.com returned rate-limit html page."
+		else
+			echo "🔥 Bad IP! $IP 🔥"
+			echo "Restarting openvpn@client..."
+			service openvpn@client restart
+		fi
 
 		ATTEMPT=$(( $ATTEMPT + 1 ))
 		DELAY=$(( $RECHECK_DELAY * ($ATTEMPT - 1) )) # wait 20, 40, 60 for rechecks in a row
@@ -29,4 +30,4 @@ while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
 	fi
 done
 
-echo "Reached retries limit. Exiting."
+echo "⚠️ Reached retries limit. Exiting."
