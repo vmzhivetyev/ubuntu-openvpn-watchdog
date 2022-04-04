@@ -8,7 +8,7 @@ RECHECK_DELAY=20 # seconds before first recheck in a row
 ATTEMPT=1
 
 while [[ $ATTEMPT -le $MAX_ATTEMPTS ]]; do
-	IP=$(curl -Ls https://api.myip.com)
+	IP=$(curl -Ls https://api.myip.com --max-time 10 --show-error 2>&1 || true)
 	if echo $IP | grep -qiF Germany ; then
 		echo "✅ All good! ✅"
 		exit 0
